@@ -14,3 +14,5 @@ run_list 'PythonProjectCookbook::default'
 
 # Specify a custom source for a single cookbook:
 cookbook 'PythonProjectCookbook', path: '.'
+
+cookbook 'poise-python', '~> 1.7.0', :supermarket

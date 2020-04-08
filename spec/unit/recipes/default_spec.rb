@@ -15,15 +15,23 @@ describe 'PythonProjectCookbook::default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
-  end
-
-  context 'When all attributes are default, on CentOS 7' do
-    # for a complete list of available platforms and versions see:
-    # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
-    platform 'centos', '7'
-
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
+    it 'should run apt-get update' do
+      expect(chef_run).to update_apt_update 'update_sources'
     end
+    it 'successfully install python3' do
+      expect(chef_run).to install_package 'python3'
+    end
+    it 'successfully install pip' do
+      expect(chef_run).to install_package 'pip'
+    end
+    # it 'successfully runs the requirements.txt via pip' do
+    #   expect(chef_run).to
+    # end
+    # it 'should create a downloads directory' do
+    #
+    # end
+    # it 'should give permissions chmod 777 to file' do
+    #
+    # end
   end
 end
